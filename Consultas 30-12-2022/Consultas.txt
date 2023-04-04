@@ -1,0 +1,41 @@
+SELECT codprod, descricao, unidade, EMBALAGEM, CODFORNEC
+FROM pcprodut
+WHERE codfilial = 3
+order by descricao;
+
+__________________________________________________________________________________________________________________________________
+
+SELECT pcprodut.codprod, 
+        pcprodut.descricao, 
+        pcprodut.OBS2, 
+        pcprodut.unidade, 
+        pcprodut.EMBALAGEM, 
+        pcprodut.codfornec, 
+        pcfornec.fornecedor
+        
+FROM pcprodut
+
+INNER JOIN pcfornec /*tabela para junção*/
+ON pcprodut.CODFORNEC = pcfornec.codfornec /*colunas equivalentes em ambas tabelas*/
+
+WHERE codfilial = 3 
+AND pcprodut.OBS2 != 'FL' /*OBS2 informa se está fora de linha*/
+and pcprodut.codfornec
+in (98,588,1225,1321,1337,1488,1541,
+    1607,1621,1623,1627,1634,1652,1658) 
+    /*CODFORNEC apenas entre os especificados*/
+    
+order by pcprodut.descricao, pcprodut.codprod asc;
+
+
+__________________________________________________________________________________________________________________________________
+
+
+SELECT bloqueio, codfilial, codusur, nome, codsupervisor, tipovend, cidade
+FROM PCUSUARI
+
+WHERE bloqueio like 'N'
+and nome like 'DANONE%'
+and codsupervisor in (4,8,9)
+
+order by codusur;

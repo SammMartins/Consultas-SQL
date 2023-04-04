@@ -1,0 +1,15 @@
+--CREATE TABLE Copa (ID integer, País varchar (20), Pontuação integer);
+--CREATE TABLE Aluno (id integer, nome varchar(50), nota real,  sexo varchar(1))
+
+--DROP TABLE Aluno; --apagar tabela
+
+--INSERT INTO Aluno VALUES(01,"Maria Silva",7.8,"F"); INSERT INTO Aluno VALUES(02,"Fernanda Lima",8.2,"F");
+--INSERT INTO Aluno VALUES(03,"Pedro Sampaio",10,"M"); INSERT INTO Aluno VALUES(04,"Igor Lopes",4,"M");
+
+--DELETE from Copa; -- apagar elemento
+
+--SELECT * FROM Aluno ORDER BY pontuação DESC; --asc crescente(padrão), desc decrecente
+--SELECT * FROM Copa ORDER BY país;
+--SELECT MIN (pontuação), país FROM Copa;
+--SELECT avg (nota),sexo  from Aluno GROUP BY sexo; --calcula a média agrupando pelo sexo,
+--SELECT Nome, nota, sexo FROM Aluno GROUP by sexo HAVING nota > 5
