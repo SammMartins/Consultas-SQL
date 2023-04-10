@@ -1,5 +1,5 @@
 SELECT a.codcli, pedc.codusur AS RCA, 
-ROUND((SUM(CASE WHEN c.CONDVENDA = 5 THEN c.vltotal ELSE 0 END) / SUM(CASE WHEN c.CONDVENDA = 1 THEN c.vltotal ELSE 0 END)) * 100, 2) AS PCT_TOTAL
+ROUND((SUM(CASE WHEN c.CONDVENDA = 5 THEN c.vltotal ELSE 0 END) / SUM(CASE WHEN c.CONDVENDA = 1 THEN c.vltotal ELSE 0 END)) * 100, 2) AS PorCent
 FROM pcpedc a
 JOIN pcpedc pedc ON pedc.codcli = a.codcli AND pedc.numped = a.numped and pedc.data = a.data
 JOIN pcpedc c ON c.codcli = a.codcli AND c.data BETWEEN SYSDATE-7 AND SYSDATE
@@ -13,4 +13,4 @@ AND EXISTS (SELECT 1 FROM pcpedc b
                   AND a.posicao NOT IN ('F', 'C'))
 GROUP BY a.codcli, pedc.codusur
 HAVING (SUM(CASE WHEN c.CONDVENDA = 5 THEN c.vltotal ELSE 0 END) / SUM(CASE WHEN c.CONDVENDA = 1 THEN c.vltotal ELSE 0 END)) > 0.1
-ORDER BY PCT_TOTAL DESC;
+ORDER BY PorCent DESC;
