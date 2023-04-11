@@ -32,5 +32,4 @@ SELECT
 FROM pcusuari a
 WHERE a.codsupervisor IN (2,8,9)
 
---                                 YoPro UHT: 17883, 17884, 17885, 18173
-
+                                    --YoPro UHT: 17883, 17884, 17885, 18173
