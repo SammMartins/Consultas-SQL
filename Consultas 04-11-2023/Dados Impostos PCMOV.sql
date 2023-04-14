@@ -33,3 +33,4 @@ FROM PCMOV a
 WHERE DTMOV > '01-jan-2023'
 
 --select * from pcmov WHERE DTMOV > '01-jan-2023'
+--select * from PCTABPR 
