@@ -27,7 +27,7 @@ SELECT
              AND c.DATA BETWEEN '03-abr-2023' AND SYSDATE
              AND d.codsupervisor IN (2,8,9)
           )) * 100 
-,2) AS porcentagem
+,1) AS porcentagem
 --------------------------------------------------------------------------------------------------------------------
 FROM pcusuari a
 WHERE a.codsupervisor IN (2,8,9)
