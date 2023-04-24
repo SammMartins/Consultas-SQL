@@ -1,6 +1,6 @@
 SELECT
-    'Cliente: ' || ped.codcli || ' do RCA: ' ||
-    pedc.codusur AS "Possíveis duplicidades:"
+    ped.codcli "Cliente",
+    pedc.codusur AS "RCA"
 FROM
     pcpedi ped
 JOIN

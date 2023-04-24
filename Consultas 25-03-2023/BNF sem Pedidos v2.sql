@@ -1,5 +1,5 @@
-SELECT DISTINCT 'Cliente: ' || a.codcli || ' do RCA: ' ||
-                pedc.codusur AS "BNF sem Pedido:"
+SELECT DISTINCT a.codcli "Cliente",
+                pedc.codusur AS "RCA"
 FROM pcpedc a
 JOIN pcpedc pedc ON pedc.codcli = a.codcli AND pedc.numped = a.numped and pedc.data = a.data
 WHERE a.data BETWEEN SYSDATE-7 AND SYSDATE
