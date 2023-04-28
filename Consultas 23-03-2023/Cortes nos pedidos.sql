@@ -1,5 +1,5 @@
 select a.codusur || ' - ' || c.nome RCA,
-       a.numped,a.codcli,a.codprod,b.descricao,TRUNC((a.qtcorte/a.qtant)*100,2) || '%' porcent,a.qtant,a.qtcorte
+       a.numped,a.codcli,a.codprod,b.descricao,TRUNC((a.qtcorte/a.qtant)*100,2) || '%' "%",a.qtant "Qt. Pedido",a.qtcorte "Qt. Corte"
     from pccortefv a
     join pcprodut b on a.codprod = b.codprod
     join pcusuari c on a.codusur = c.codusur
