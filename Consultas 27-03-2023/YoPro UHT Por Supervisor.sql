@@ -6,7 +6,7 @@ SELECT
      JOIN pcusuari d ON c.codusur = d.codusur
      WHERE c.codprod IN (17883,17884,17885,18173)
        AND c.pvenda < 6.99
-       AND c.DATA BETWEEN '03-abr-2023' AND SYSDATE
+       AND c.DATA BETWEEN '23-abr-2023' AND SYSDATE
        AND d.codsupervisor = a.codsupervisor
     ) AS qtCaixas,
 --------------------------------------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ SELECT
        JOIN pcusuari d ON c.codusur = d.codusur
        WHERE c.codprod IN (17883,17884,17885,18173)
          AND c.pvenda < 6.99
-         AND c.DATA BETWEEN '03-abr-2023' AND SYSDATE
+         AND c.DATA BETWEEN '23-abr-2023' AND SYSDATE
          AND d.codsupervisor = a.codsupervisor) 
             / 
           (SELECT SUM(qt)/24 
@@ -24,7 +24,7 @@ SELECT
            JOIN pcusuari d ON c.codusur = d.codusur
            WHERE c.codprod IN (17883,17884,17885,18173)
              AND c.pvenda < 6.99
-             AND c.DATA BETWEEN '03-abr-2023' AND SYSDATE
+             AND c.DATA BETWEEN '23-abr-2023' AND SYSDATE
              AND d.codsupervisor IN (2,8,9)
           )) * 100 
 ,1) AS porcentagem
