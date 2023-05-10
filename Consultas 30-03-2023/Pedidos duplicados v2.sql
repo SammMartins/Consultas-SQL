@@ -24,7 +24,8 @@ LEFT JOIN
         ped2.codcli,
         ped2.codprod
     HAVING COUNT(*) > 1
-    ) ped2 ON ped.codcli = ped2.codcli
+    ) ped2 ON ped.codcli = ped2.codcli 
+
 WHERE
     ped.data BETWEEN SYSDATE-7 AND SYSDATE
 AND ped.posicao NOT IN ('F', 'C')
