@@ -10,6 +10,7 @@ AND EXISTS (SELECT 1 FROM pcpedc b
                   WHERE b.data BETWEEN SYSDATE-7 AND SYSDATE
                   AND b.CONDVENDA = 1
                   AND a.codcli = b.codcli
+                  and b.codcli != 11185 and b.codusur not in (2,8,9,10)              
                   AND a.posicao NOT IN ('F', 'C'))
 GROUP BY a.codcli, pedc.codusur
 HAVING (SUM(CASE WHEN c.CONDVENDA = 5 THEN c.vltotal ELSE 0 END) / SUM(CASE WHEN c.CONDVENDA = 1 THEN c.vltotal ELSE 0 END)) > 0.1
