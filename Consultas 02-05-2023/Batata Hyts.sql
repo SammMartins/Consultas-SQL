@@ -1,4 +1,4 @@
-SELECT DISTINCT (a.codusur || SUBSTR(b.nome, 7, 50)) "Vendedor",
+SELECT DISTINCT (a.codusur || ' - ' || b.nome) "Vendedor",
 -------------------------------------------------------------------------------------------------------------------------        
     (SELECT SUM(d.qt) FROM pcpedi d
         WHERE d.CODPROD IN (18362, 18179, 18361, 18180) AND d.data BETWEEN '1-mai-2023' AND SYSDATE
