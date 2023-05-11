@@ -6,7 +6,7 @@ from pcpedi a
     join pcprodut c on a.codprod = c.codprod
 WHERE a.DATA > '02-abr-2023'
     --AND a.CODUSUR In (140,141,142,143,153,164,157,2,10)
-    AND a.posicao != 'F'
+    AND a.posicao != 'F' AND a.posicao != 'C'
     AND (a.QT - b.qtest) > 0
     and b.codfilial = 3
     --AND c.descricao like '%YOPRO%'
