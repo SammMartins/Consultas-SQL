@@ -1,0 +1,11 @@
+SELECT *
+FROM PCCLIENT a
+WHERE EXISTS (
+    SELECT *
+    FROM PCPEDC C
+    WHERE C.CONDVENDA IN (5, 11)
+        AND C.VLTOTAL > 400
+        AND C.CODCLI = a.CODCLI
+        AND C.DATA > SYSDATE - (366 * 2)
+    HAVING COUNT(*) > 3)
+--AND a.Codcli != 11185
