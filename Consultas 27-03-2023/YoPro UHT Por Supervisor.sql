@@ -8,7 +8,7 @@ SELECT
        AND c.pvenda < 6.99
        AND c.DATA BETWEEN '1-mai-2023' AND SYSDATE
        AND d.codsupervisor = a.codsupervisor
-    ) AS qtCaixas,
+    ) AS "Qt. Caixas",
 --------------------------------------------------------------------------------------------------------------------
   ROUND( 
     ((SELECT SUM(qt)/24 
@@ -27,7 +27,7 @@ SELECT
              AND c.DATA BETWEEN '1-mai-2023' AND SYSDATE
              AND d.codsupervisor IN (2,8,9)
           )) * 100 
-,1) AS porcentagem
+,1) AS "%"
 --------------------------------------------------------------------------------------------------------------------
 FROM pcusuari a join PCSUPERV s on a.codsupervisor = s.codsupervisor
 WHERE a.codsupervisor IN (2,8,9)
