@@ -1,5 +1,5 @@
 SELECT 
-    DISTINCT a.codsupervisor,
+    DISTINCT a.codsupervisor || ' - ' || s.nome "Supervisor",
 --------------------------------------------------------------------------------------------------------------------
     (SELECT SUM(qt)/24 
      FROM pcpedi c
@@ -29,7 +29,7 @@ SELECT
           )) * 100 
 ,1) AS porcentagem
 --------------------------------------------------------------------------------------------------------------------
-FROM pcusuari a
+FROM pcusuari a join PCSUPERV s on a.codsupervisor = s.codsupervisor
 WHERE a.codsupervisor IN (2,8,9)
 
                                     --YoPro UHT: 17883, 17884, 17885, 18173
