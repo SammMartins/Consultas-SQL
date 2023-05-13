@@ -1,3 +1,4 @@
+                                    --YoPro UHT: 17883, 17884, 17885, 18173
 SELECT 
     DISTINCT a.codsupervisor || ' - ' || s.nome "Supervisor",
 --------------------------------------------------------------------------------------------------------------------
@@ -32,4 +33,16 @@ SELECT
 FROM pcusuari a join PCSUPERV s on a.codsupervisor = s.codsupervisor
 WHERE a.codsupervisor IN (2,8,9)
 
-                                    --YoPro UHT: 17883, 17884, 17885, 18173
+----------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
+UNION ALL
+SELECT 
+    'Total' AS "Supervisor",
+    SUM(qt)/24 AS "Qt. Caixas",
+    100.00 AS "%"  -- Valor fixo de 100,00 para a linha de total
+FROM pcpedi c
+JOIN pcusuari d ON c.codusur = d.codusur
+WHERE c.codprod IN (17883,17884,17885,18173)
+  AND c.pvenda < 6.99
+  AND c.DATA BETWEEN '1-mai-2023' AND SYSDATE
+  AND d.codsupervisor IN (2,8,9)   
