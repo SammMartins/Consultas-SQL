@@ -34,8 +34,8 @@ FROM pcusuari a join PCSUPERV s on a.codsupervisor = s.codsupervisor
 WHERE a.codsupervisor IN (2,8,9)
 
 ----------------------------------------------------------------------------------------------------------------------------------------
+UNION ALL --União das 3 linhas com a 4ª linha com o valor total
 ----------------------------------------------------------------------------------------------------------------------------------------
-UNION ALL
 SELECT 
     'Total' AS "Supervisor",
     SUM(qt)/24 AS "Qt. Caixas",
