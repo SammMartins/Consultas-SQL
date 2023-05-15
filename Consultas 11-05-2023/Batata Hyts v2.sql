@@ -1,4 +1,4 @@
-WITH caixas AS (
+WITH PCCaixasHyts AS (
     -- CTE (Common Table Expression) para calcular as quantidades de caixas por usuário
     SELECT d.codusur,
            SUM(CASE WHEN d.CODPROD IN (18362, 18179, 18361, 18180) THEN d.qt ELSE 0 END) AS caixas_chips,
@@ -15,7 +15,7 @@ SELECT (u.codusur || ' - ' || u.nome) AS "Vendedor",
        c.caixas_puruca / 24 AS "Caixas de PURUCA 70g",
        ((c.caixas_chips * 2) + (c.caixas_palha * 3) + (c.caixas_puruca * 2)) / 24 AS "R$ Total"
 FROM PCUSUARI u
-JOIN caixas c ON u.codusur = c.codusur
+JOIN PCCaixasHyts c ON u.codusur = c.codusur
 WHERE u.codusur IN (140, 141, 142, 145, 148, 150, 151, 152, 153, 155, 156, 157, 158, 164, 167, 168, 169, 170, 172, 174)
 ----------------------------------------------------------------------------------------------------------------------------------------
 UNION ALL
@@ -27,5 +27,5 @@ SELECT
     SUM(c.caixas_puruca / 24) AS "Caixas de PURUCA 70g",
     SUM(((c.caixas_chips * 2) + (c.caixas_palha * 3) + (c.caixas_puruca * 2)) / 24) AS "R$ Total"
     
-FROM caixas c
+FROM PCCaixasHyts c
     where c.codusur in (140, 141, 142, 145, 148, 150, 151, 152, 153, 155, 156, 157, 158, 164, 167, 168, 169, 170, 172, 174)
