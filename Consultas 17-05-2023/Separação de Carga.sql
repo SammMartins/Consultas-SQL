@@ -1,5 +1,5 @@
-SELECT DISTINCT(a.codprod)||'' codprod, b.codfornec||'' codfornec, b.Descricao PRODUTO, 
-       SUM(a.qt) qt_ped, --b.qtunitcx "Uni. p/ Caixa",
+SELECT DISTINCT(a.codprod), b.codfornec||'' codfornec, b.Descricao PRODUTO, 
+       SUM(a.qt) qt_ped, '|' "|",
     --------------------------------------------------------------------------------
        (CASE WHEN (SUM(a.qt) / b.qtunitcx) >= 1 
              THEN TRUNC((SUM(a.qt) / b.qtunitcx),0)||' Caixas'||' e '||TRUNC(MOD(SUM(a.qt),b.qtunitcx))||' Unidades'
@@ -12,16 +12,16 @@ FROM PCPEDI a
     JOIN PCPRODUT b ON a.codprod = b.codprod
     JOIN PCPEDC c ON a.numped = c.numped
 WHERE c.numcar = 193946 --Alterar abaixo também
-    and c.numnota in (383135,383136,383139,383140,383141,383210,383211,383212,383214,383215,383230,383231,383232,383233,383234,383243)
+    --and c.numnota in ()
 GROUP BY a.codprod,b.codfornec, b.Descricao, b.qtunitcx, b.PESOBRUTO
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 UNION ALL
 SELECT
-  '  CARGA' AS "CODPROD",
-  'NÚMERO:' AS "CODFORNEC",
-  c.numcar || ' - '||'Destino: '||carg.destino AS "PRODUTO",
+  NULL AS "CODPROD",
+  '  CARGA' AS "CODFORNEC",
+  'Nº '||c.numcar || ' - '||'Destino: '||carg.destino AS "PRODUTO",
   NULL AS "QT_PED",
-  --NULL AS "Uni. p/ Caixa",
+  '|' AS "Uni. p/ Caixa",
   '  Peso Total da Carga:' AS "SEPARAÇÃO p/ CARGA",
   Carg.totpeso AS PESOTOTAL
 FROM
@@ -38,5 +38,3 @@ GROUP BY
 ORDER BY
   codfornec desc,
   qt_ped DESC
-  
---SELECT * From PCPEDC where numcar = 193946 and numnota in (383135,383136,383139,383140,383141,383210,383211,383212,383214,383215,383230,383231,383232,383233,383234,383243)
