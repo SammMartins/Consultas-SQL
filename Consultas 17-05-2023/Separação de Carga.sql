@@ -14,18 +14,24 @@ FROM PCPEDI a
 WHERE c.numcar = 193969 --Alterar abaixo também
 GROUP BY a.codprod,b.codfornec, b.Descricao, b.qtunitcx, b.PESOBRUTO
 
-UNION ALL 
-SELECT '_CARGA_' AS "CODPROD",
-       '_NÚMERO:_' AS "CODFORNEC",
-       c.numcar||'' AS "PRODUTO",
-       NULL AS "QT_PED",
-       --NULL AS "Uni. p/ Caixa",
-       NULL AS "SEPARAÇÃO p/ CARGA",
-       NULL AS "PESOTOTAL"
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+UNION ALL
+SELECT
+  '_CARGA_' AS "CODPROD",
+  '_NÚMERO:_' AS "CODFORNEC",
+  c.numcar || '' AS "PRODUTO",
+  NULL AS "QT_PED",
+  --NULL AS "Uni. p/ Caixa",
+  '_Peso Total da Carga:_' AS "SEPARAÇÃO p/ CARGA",
+  SUM(b.PESOBRUTO * a.qt) AS PESOTOTAL
 FROM
   PCPEDI a
+  JOIN PCPRODUT b ON a.codprod = b.codprod
   JOIN PCPEDC c ON a.numped = c.numped
 WHERE
-  c.numcar = 193969 --Alterar acima também
-  GROUP BY c.numcar
-  Order By codfornec asc,qt_ped desc
+  c.numcar = 193969 -- Alterar acima também
+GROUP BY
+  c.numcar
+ORDER BY
+  codfornec desc,
+  qt_ped DESC
