@@ -11,7 +11,7 @@ SELECT DISTINCT(a.codprod), b.codfornec||'' codfornec, b.Descricao PRODUTO,
 FROM PCPEDI a
     JOIN PCPRODUT b ON a.codprod = b.codprod
     JOIN PCPEDC c ON a.numped = c.numped
-WHERE c.numcar = 193973 --Alterar abaixo também
+WHERE c.numcar = 193975 --Alterar abaixo também
     --and c.numnota in ()
 GROUP BY a.codprod,b.codfornec, b.Descricao, b.qtunitcx, b.PESOBRUTO
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ FROM
   JOIN PCPEDC c ON a.numped = c.numped
   JOIN PCCARREG Carg on c.numcar = carg.numcar
 WHERE
-  c.numcar = 193973 -- Alterar acima também
+  c.numcar = 193975 -- Alterar acima também
 GROUP BY
   c.numcar,
   Carg.totpeso,
