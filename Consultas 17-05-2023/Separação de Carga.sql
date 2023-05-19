@@ -4,21 +4,23 @@ FROM (
            b.codfornec || '' AS codfornec, 
            b.Descricao AS PRODUTO, 
            SUM(a.qt) AS qt_ped, 
+    ------------------------------------------------------------------------------       
            '|' AS "|",
            (CASE WHEN (SUM(a.qt) / b.qtunitcx) >= 1 
                  THEN TRUNC((SUM(a.qt) / b.qtunitcx),0)||' Caixas'||' e '||TRUNC(MOD(SUM(a.qt),b.qtunitcx))||' Unidades'
                  ELSE '0 Caixas e '||SUM(a.qt) || ' Unidades' 
             END) AS "SEPARAÇÃO p/ CARGA",
            '|' AS "-",
+    ------------------------------------------------------------------------------
            b.PESOBRUTO * SUM(a.qt) AS PESOTOTAL
+           
     FROM PCPEDI a
     JOIN PCPRODUT b ON a.codprod = b.codprod
     JOIN PCPEDC c ON a.numped = c.numped
     WHERE c.numcar = 193979
     GROUP BY a.codprod, b.codfornec, b.Descricao, b.qtunitcx, b.PESOBRUTO
-
+-------------------------------------------------------------------------------------------------------------------------------
     UNION ALL
-
     SELECT NULL AS "CODPROD",
            '  CARGA' AS "CODFORNEC",
            'Nº ' || c.numcar || ' - ' || 'Destino: ' || carg.destino AS "PRODUTO",
@@ -37,4 +39,4 @@ ORDER BY
   CASE WHEN codfornec IN ('588', '1321','1541','1623','1728') THEN 0 ELSE 1 END,
   CASE WHEN codfornec IN ('1761') THEN 1 ELSE 2 END,
   codfornec DESC,
-  qt_ped DESC;
+  qt_ped DESC
