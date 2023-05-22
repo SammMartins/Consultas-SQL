@@ -20,7 +20,7 @@ WHERE u.codusur IN (140, 141, 142, 145, 148, 150, 151, 152, 153, 155, 156, 157, 
 ----------------------------------------------------------------------------------------------------------------------------------------
 UNION ALL --Utilizada para realizar a união de duas consultas, combinando os resultados em um único conjunto de resultados
 SELECT 
-    'Desempenho Total da Equipe' AS "Vendedor",
+    ' DESEMPENHO TOTAL DA EQUIPE' AS "Vendedor",
     SUM(c.unidades_chips / 24) AS "Caixas de CHIPS 40g",
     SUM(c.unidades_palha / 24) AS "Caixas de PALHA 70g",
     SUM(c.unidades_puruca / 24) AS "Caixas de PURUCA 70g",

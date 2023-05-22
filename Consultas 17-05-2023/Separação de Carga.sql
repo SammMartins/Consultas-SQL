@@ -17,7 +17,7 @@ FROM (
     FROM PCPEDI a
     JOIN PCPRODUT b ON a.codprod = b.codprod
     JOIN PCPEDC c ON a.numped = c.numped
-    WHERE c.numcar = 193979
+    WHERE c.numcar = 193990
     GROUP BY a.codprod, b.codfornec, b.Descricao, b.qtunitcx, b.PESOBRUTO
 -------------------------------------------------------------------------------------------------------------------------------
     UNION ALL
@@ -32,7 +32,7 @@ FROM (
     FROM PCPEDI a
     JOIN PCPEDC c ON a.numped = c.numped
     JOIN PCCARREG carg ON c.numcar = carg.numcar
-    WHERE c.numcar = 193979
+    WHERE c.numcar = 193990
     GROUP BY c.numcar, carg.totpeso, carg.destino
 ) subquery
 ORDER BY 
