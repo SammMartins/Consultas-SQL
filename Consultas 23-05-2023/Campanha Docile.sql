@@ -11,7 +11,7 @@ WITH FaturamentoDocile AS
 -----------------------------------------------------------------------------------------------------------------------
     DNMAIO AS
         (SELECT ped.codusur AS RCA,
-                COUNT(DISTINCT ped.codcli) AS "POSITIVAÇÃO GERAL MAIO"
+                COUNT(DISTINCT ped.codcli) AS DNMAIO
             FROM PCPEDI ped
                 JOIN pcprodut prod on ped.codprod = prod.codprod
             WHERE prod.codfornec = 1627
@@ -19,10 +19,10 @@ WITH FaturamentoDocile AS
                 AND ped.posicao LIKE 'F'
                 AND ped.vlbonific = 0
             GROUP BY ped.codusur),
-   -----------------------------------------------------------------------------
+      -------------------------------------------------------------------  
     DNJUNHO AS 
         (SELECT ped.codusur AS RCA,
-                COUNT(DISTINCT ped.codcli) AS "POSITIVAÇÃO GERAL JUNHO"
+                COUNT(DISTINCT ped.codcli) AS DNJUNHO
             FROM PCPEDI ped
                 JOIN pcprodut prod on ped.codprod = prod.codprod
             WHERE prod.codfornec = 1627
@@ -33,18 +33,26 @@ WITH FaturamentoDocile AS
 -----------------------------------------------------------------------------------------------------------------------
 DNDISTINCT AS
     (SELECT ped.codusur AS RCA,
-            COUNT(DISTINCT ped.codcli) AS "POSITIVAÇÃO CLIENTES DISTINTOS" --Maio e Junho
+            COUNT(DISTINCT ped.codcli) AS DISTINTOS --Maio e Junho
     FROM PCPEDI ped
         JOIN pcprodut prod on ped.codprod = prod.codprod
     WHERE prod.codfornec = 1627
-        AND ped.data BETWEEN '01-abr-2023' and SYSDATE
+        AND ped.data BETWEEN '01-mai-2023' and SYSDATE
         AND ped.posicao LIKE 'F'
         AND ped.vlbonific = 0
     GROUP BY ped.codusur)
 -----------------------------------------------------------------------------------------------------------------------
-SELECT (usur.codusur || ' - ' || usur.nome) AS "Vendedor",
-        fat.faturamento AS "Faturamento"
+SELECT  usur.codusur cod, usur.nome AS "Vendedor",
+        fat.faturamento AS "Faturamento",
+        dist.distintos AS "DN DISTINTOS",
+        maio.dnmaio --+ jun.dnjunho
+        AS "SOMA DN"
+        
 FROM PCUSUARI usur
     JOIN FaturamentoDocile fat ON usur.codusur = fat.RCA
+    JOIN DNDISTINCT dist ON usur.codusur = dist.RCA
+    JOIN DNMAIO maio ON usur.codusur = maio.RCA
+    --JOIN DNJUNHO jun ON usur.codusur = jun.RCA
 WHERE usur.codusur IN (140,141,142,157,164,153,158,155,156,167,169,170,172,151)
 -----------------------------------------------------------------------------------------------------------------------
+
