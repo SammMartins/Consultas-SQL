@@ -7,9 +7,9 @@ WITH FaturamentoDocile AS
         AND ped.data BETWEEN '01-mai-2023' and SYSDATE
         AND ped.posicao LIKE 'F'
         AND ped.vlbonific = 0
-    Group By ped.codusur)
+    Group By ped.codusur),
 -----------------------------------------------------------------------------------------------------------------------
-    WITH DNMAIO AS
+    DNMAIO AS
         (SELECT ped.codusur AS RCA,
                 COUNT(DISTINCT ped.codcli) AS "POSITIVAÇÃO GERAL MAIO"
             FROM PCPEDI ped
@@ -18,9 +18,9 @@ WITH FaturamentoDocile AS
                 AND ped.data BETWEEN '01-mai-2023' and '31-mai-2023'
                 AND ped.posicao LIKE 'F'
                 AND ped.vlbonific = 0
-            GROUP BY ped.codusur)
---------------------------------------------------------------------------------
-    WITH DNJUNHO AS 
+            GROUP BY ped.codusur),
+   -----------------------------------------------------------------------------
+    DNJUNHO AS 
         (SELECT ped.codusur AS RCA,
                 COUNT(DISTINCT ped.codcli) AS "POSITIVAÇÃO GERAL JUNHO"
             FROM PCPEDI ped
@@ -29,9 +29,9 @@ WITH FaturamentoDocile AS
                 AND ped.data BETWEEN '01-jun-2023' and '30-jun-2023'
                 AND ped.posicao LIKE 'F'
                 AND ped.vlbonific = 0
-            GROUP BY ped.codusur)
+            GROUP BY ped.codusur),
 -----------------------------------------------------------------------------------------------------------------------
-WITH DNDISTINCT AS
+DNDISTINCT AS
     (SELECT ped.codusur AS RCA,
             COUNT(DISTINCT ped.codcli) AS "POSITIVAÇÃO CLIENTES DISTINTOS" --Maio e Junho
     FROM PCPEDI ped
