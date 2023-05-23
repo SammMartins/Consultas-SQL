@@ -9,6 +9,7 @@ SELECT
        AND c.pvenda < 6.90
        AND c.DATA BETWEEN '1-mai-2023' AND SYSDATE
        AND d.codsupervisor = a.codsupervisor
+       AND c.vlbonific = 0
     ) AS "Qt. Caixas",
 --------------------------------------------------------------------------------------------------------------------
   ROUND( 
@@ -18,6 +19,7 @@ SELECT
        WHERE c.codprod IN (17883,17884,17885,18173)
          AND c.pvenda < 6.90
          AND c.DATA BETWEEN '1-mai-2023' AND SYSDATE
+         AND c.vlbonific = 0
          AND d.codsupervisor = a.codsupervisor) 
             / 
           (SELECT SUM(qt)/24 
@@ -26,6 +28,7 @@ SELECT
            WHERE c.codprod IN (17883,17884,17885,18173)
              AND c.pvenda < 6.90
              AND c.DATA BETWEEN '1-mai-2023' AND SYSDATE
+             AND c.vlbonific = 0
              AND d.codsupervisor IN (2,8,9)
           )) * 100 
 ,1) AS "%"
@@ -45,6 +48,7 @@ JOIN pcusuari d ON c.codusur = d.codusur
 WHERE c.codprod IN (17883,17884,17885,18173)
   AND c.pvenda < 6.90
   AND c.DATA BETWEEN '1-mai-2023' AND SYSDATE
+  AND c.vlbonific = 0
   AND d.codsupervisor IN (2,8,9) 
   
 Order By "Qt. Caixas"
