@@ -20,7 +20,7 @@ WITH FaturamentoDocile AS
                 AND PED.DTCANCEL IS NULL
                 AND PED.CONDVENDA IN (1, 2, 3, 7, 9, 14, 15, 17, 18, 19, 98)
             GROUP BY ped.codusur),
-      -------------------------------------------------------------------  
+   -------------------------------------------------------------------------- 
     DNJUNHO AS 
         (SELECT ped.codusur AS RCA,
                 COUNT(DISTINCT ped.codcli) AS DNJUNHO
@@ -57,5 +57,6 @@ FROM PCUSUARI usur
     JOIN DNMAIO maio ON usur.codusur = maio.RCA
     --JOIN DNJUNHO jun ON usur.codusur = jun.RCA
 WHERE usur.codusur IN (140,141,142,157,164,153,158,155,156,167,169,170,172,151)
+ORDER BY COD
 -----------------------------------------------------------------------------------------------------------------------
-ORDER BY FATURAMENTO desc
+
