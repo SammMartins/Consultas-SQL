@@ -5,41 +5,44 @@ WITH FaturamentoDocile AS
         JOIN pcprodut prod on ped.codprod = prod.codprod
     WHERE prod.codfornec = 1627
         AND ped.data BETWEEN '01-mai-2023' and SYSDATE
-        AND ped.posicao LIKE 'F'
+        AND ped.posicao NOT LIKE 'C'
         AND ped.vlbonific = 0
     Group By ped.codusur),
 -----------------------------------------------------------------------------------------------------------------------
     DNMAIO AS
         (SELECT ped.codusur AS RCA,
-                COUNT(DISTINCT ped.codcli) AS DNMAIO
-            FROM PCPEDI ped
-                JOIN pcprodut prod on ped.codprod = prod.codprod
+                COUNT(DISTINCT ped.codcli) AS DNMAIO 
+            FROM PCPEDC ped
+                JOIN PCPEDI pedi on pedi.numped = ped.numped
+                JOIN pcprodut prod on pedi.codprod = prod.codprod
             WHERE prod.codfornec = 1627
                 AND ped.data BETWEEN '01-mai-2023' and '31-mai-2023'
-                AND ped.posicao LIKE 'F'
-                AND ped.vlbonific = 0
+                AND PED.DTCANCEL IS NULL
+                AND PED.CONDVENDA IN (1, 2, 3, 7, 9, 14, 15, 17, 18, 19, 98)
             GROUP BY ped.codusur),
       -------------------------------------------------------------------  
     DNJUNHO AS 
         (SELECT ped.codusur AS RCA,
                 COUNT(DISTINCT ped.codcli) AS DNJUNHO
-            FROM PCPEDI ped
-                JOIN pcprodut prod on ped.codprod = prod.codprod
+            FROM PCPEDC ped
+                JOIN PCPEDI pedi on pedi.numped = ped.numped
+                JOIN pcprodut prod on pedi.codprod = prod.codprod
             WHERE prod.codfornec = 1627
                 AND ped.data BETWEEN '01-jun-2023' and '30-jun-2023'
-                AND ped.posicao LIKE 'F'
-                AND ped.vlbonific = 0
+                AND PED.DTCANCEL IS NULL
+                AND PED.CONDVENDA IN (1, 2, 3, 7, 9, 14, 15, 17, 18, 19, 98)
             GROUP BY ped.codusur),
 -----------------------------------------------------------------------------------------------------------------------
 DNDISTINCT AS
     (SELECT ped.codusur AS RCA,
             COUNT(DISTINCT ped.codcli) AS DISTINTOS --Maio e Junho
-    FROM PCPEDI ped
-        JOIN pcprodut prod on ped.codprod = prod.codprod
+    FROM PCPEDC ped
+        JOIN PCPEDI pedi on pedi.numped = ped.numped
+        JOIN pcprodut prod on pedi.codprod = prod.codprod
     WHERE prod.codfornec = 1627
         AND ped.data BETWEEN '01-mai-2023' and SYSDATE
-        AND ped.posicao LIKE 'F'
-        AND ped.vlbonific = 0
+        AND PED.DTCANCEL IS NULL
+        AND PED.CONDVENDA IN (1, 2, 3, 7, 9, 14, 15, 17, 18, 19, 98)
     GROUP BY ped.codusur)
 -----------------------------------------------------------------------------------------------------------------------
 SELECT  usur.codusur cod, usur.nome AS "Vendedor",
@@ -55,4 +58,4 @@ FROM PCUSUARI usur
     --JOIN DNJUNHO jun ON usur.codusur = jun.RCA
 WHERE usur.codusur IN (140,141,142,157,164,153,158,155,156,167,169,170,172,151)
 -----------------------------------------------------------------------------------------------------------------------
-
+ORDER BY FATURAMENTO desc
