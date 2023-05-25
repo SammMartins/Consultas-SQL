@@ -57,6 +57,6 @@ FROM PCUSUARI usur
     JOIN DNMAIO maio ON usur.codusur = maio.RCA
     --JOIN DNJUNHO jun ON usur.codusur = jun.RCA
 WHERE usur.codusur IN (140,141,142,157,164,153,158,155,156,167,169,170,172,151)
-ORDER BY COD
+ORDER BY cod
 -----------------------------------------------------------------------------------------------------------------------
 
