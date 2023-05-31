@@ -19,4 +19,3 @@ order by DIAS_VENCIMENTO Desc, TÍTULO Desc
 
 --select * from pcclient
 
-
