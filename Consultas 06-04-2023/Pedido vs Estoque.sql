@@ -13,3 +13,4 @@ WHERE a.DATA > SYSDATE - 5
     and b.codfilial = 3
     --AND c.descricao like '%YOPRO%'
 group by a.codprod,c.descricao,b.qtest,b.qtreserv
+ORDER BY "Corte Previsto" DESC
