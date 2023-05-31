@@ -5,7 +5,7 @@ select * from
                                         from pcmov mov
                                         join pcprodut B on mov.codprod = B.codprod
                                         where mov.codcli = a.codcli
-                                        and mov.dtmov between '{DATAINI}' AND '{DATAFIN}'
+                                        and mov.dtmov between '01-fev-2023' AND SYSDATE
                                         and mov.codoper = 'ED') venda
            
     from PCCLIENT a
@@ -14,11 +14,10 @@ select * from
     join pcpedc d on b.numped = d.numped
     join pcprodut e on b.codprod = e.codprod
 
-    where b.data between '{DATAINI}' AND '{DATAFIN}'
+    where b.data between '01-fev-2023' AND SYSDATE
 
     and c.bloqueio like 'N'
-    and c.nome like '%DANONE%'
-    and c.codusur in ({VENDEDOR})
+    and c.codusur in (140)
 
     and d.codcob Not Like 'BNFT' 
     and d.codcob Not Like 'BNF' 
@@ -26,4 +25,4 @@ select * from
     group by a.codcli, a.cliente, c.codusur
 
     order by venda desc)
-where ROWNUM <= {CHECKBOX}
+where ROWNUM <= 10
