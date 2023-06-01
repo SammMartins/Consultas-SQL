@@ -7,7 +7,7 @@ FROM pcpedi a
     JOIN pcclient d on d.codcli = a.codcli --SELECT * FROM PCclient
     
 WHERE a.data BETWEEN SYSDATE-7 and SYSDATE
-    AND a.codusur in (141,140,142,153,164,157,2)
+    AND a.codusur in (141,140,142,157,2) --or a.codusur in (153,164)
                      --(158,155,156,167,169,170,172)
                      --(148,145,150,151,152,168,174)
     AND a.posicao Not Like 'F' AND a.posicao Not Like 'M' 
