@@ -48,13 +48,13 @@ DNDISTINCT AS
 SELECT  usur.codusur cod, usur.nome AS "Vendedor",
         fat.faturamento AS "Faturamento",
         dist.distintos AS "DN DISTINTOS",
-        maio.dnmaio --+ jun.dnjunho
+        maio.dnmaio + jun.dnjunho
         AS "SOMA DN"
         
 FROM PCUSUARI usur
     JOIN FaturamentoDocile fat ON usur.codusur = fat.RCA
     JOIN DNDISTINCT dist ON usur.codusur = dist.RCA
     JOIN DNMAIO maio ON usur.codusur = maio.RCA
-    --JOIN DNJUNHO jun ON usur.codusur = jun.RCA
+    JOIN DNJUNHO jun ON usur.codusur = jun.RCA
 WHERE usur.codusur IN (140,141,142,157,164,153,158,155,156,167,169,170,172,151)
 ORDER BY cod
