@@ -4,7 +4,7 @@ WITH FaturamentoDocile AS
     FROM PCPEDI ped
         JOIN pcprodut prod on ped.codprod = prod.codprod
     WHERE prod.codfornec = 1627
-        AND ped.data BETWEEN '01-mai-2023' and SYSDATE
+        AND ped.data BETWEEN '01-may-2023' and SYSDATE
         AND ped.posicao NOT LIKE 'C'
         AND ped.vlbonific = 0
     Group By ped.codusur),
@@ -16,7 +16,7 @@ WITH FaturamentoDocile AS
                 JOIN PCPEDI pedi on pedi.numped = ped.numped
                 JOIN pcprodut prod on pedi.codprod = prod.codprod
             WHERE prod.codfornec = 1627
-                AND ped.data BETWEEN '01-mai-2023' and '31-mai-2023'
+                AND ped.data BETWEEN '01-may-2023' and '31-may-2023'
                 AND PED.DTCANCEL IS NULL
                 AND PED.CONDVENDA IN (1, 2, 3, 7, 9, 14, 15, 17, 18, 19, 98)
             GROUP BY ped.codusur),
@@ -40,7 +40,7 @@ DNDISTINCT AS
         JOIN PCPEDI pedi on pedi.numped = ped.numped
         JOIN pcprodut prod on pedi.codprod = prod.codprod
     WHERE prod.codfornec = 1627
-        AND ped.data BETWEEN '01-mai-2023' and SYSDATE
+        AND ped.data BETWEEN '01-may-2023' and SYSDATE
         AND PED.DTCANCEL IS NULL
         AND PED.CONDVENDA IN (1, 2, 3, 7, 9, 14, 15, 17, 18, 19, 98)
     GROUP BY ped.codusur)
@@ -56,5 +56,5 @@ FROM PCUSUARI usur
     JOIN DNDISTINCT dist ON usur.codusur = dist.RCA
     JOIN DNMAIO maio ON usur.codusur = maio.RCA
     JOIN DNJUNHO jun ON usur.codusur = jun.RCA
-WHERE usur.codusur IN (140,141,142,157,164,153,158,155,156,167,169,170,172,151)
+WHERE usur.codusur IN (140, 141, 142, 143, 145, 148, 150, 151, 152, 153, 155, 156, 157, 158, 161, 164, 167, 168, 169, 170, 172, 174)
 ORDER BY cod
