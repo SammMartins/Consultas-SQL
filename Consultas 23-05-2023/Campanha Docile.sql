@@ -1,6 +1,6 @@
 WITH FaturamentoDocile AS 
     (SELECT ped.codusur as RCA,
-            SUM(ped.qt*ped.pvenda) as Faturamento
+            SUM(ped.qt*ped.pvenda)  + 0 as Faturamento
     FROM PCPEDI ped
         JOIN pcprodut prod on ped.codprod = prod.codprod
     WHERE prod.codfornec = 1627
@@ -11,7 +11,7 @@ WITH FaturamentoDocile AS
 -----------------------------------------------------------------------------------------------------------------------
     DNMAIO AS
         (SELECT ped.codusur AS RCA,
-                COUNT(DISTINCT ped.codcli) AS DNMAIO 
+                COUNT(DISTINCT ped.codcli) + 0 AS DNMAIO 
             FROM PCPEDC ped
                 JOIN PCPEDI pedi on pedi.numped = ped.numped
                 JOIN pcprodut prod on pedi.codprod = prod.codprod
@@ -23,7 +23,7 @@ WITH FaturamentoDocile AS
    -------------------------------------------------------------------------- 
     DNJUNHO AS 
         (SELECT ped.codusur AS RCA,
-                COUNT(DISTINCT ped.codcli) AS DNJUNHO
+                COUNT(DISTINCT ped.codcli) + 0 AS DNJUNHO
             FROM PCPEDC ped
                 JOIN PCPEDI pedi on pedi.numped = ped.numped
                 JOIN pcprodut prod on pedi.codprod = prod.codprod
@@ -35,7 +35,7 @@ WITH FaturamentoDocile AS
 -----------------------------------------------------------------------------------------------------------------------
 DNDISTINCT AS
     (SELECT ped.codusur AS RCA,
-            COUNT(DISTINCT ped.codcli) AS DISTINTOS --Maio e Junho
+            COUNT(DISTINCT ped.codcli) + 0 AS DISTINTOS --Maio e Junho
     FROM PCPEDC ped
         JOIN PCPEDI pedi on pedi.numped = ped.numped
         JOIN pcprodut prod on pedi.codprod = prod.codprod
@@ -56,5 +56,5 @@ FROM PCUSUARI usur
     JOIN DNDISTINCT dist ON usur.codusur = dist.RCA
     JOIN DNMAIO maio ON usur.codusur = maio.RCA
     JOIN DNJUNHO jun ON usur.codusur = jun.RCA
-WHERE usur.codusur IN (140, 141, 142, 143, 145, 148, 150, 151, 152, 153, 155, 156, 157, 158, 161, 164, 167, 168, 169, 170, 172, 174)
+WHERE usur.codusur IN (140, 141, 142, 143, 148, 150, 151, 152, 153, 155, 156, 157, 158, 161, 164, 167, 169, 170, 172)
 ORDER BY cod
