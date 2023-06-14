@@ -1,8 +1,8 @@
 WITH addyopro AS (SELECT 0 AS ADDJR, 0 AS ADDDIDA FROM DUAL), -- Para adição manual de caixas
+------------------------------------------------------------------------------------------------------------------------    
 qt_caixas AS (
   SELECT 
     a.codsupervisor || ' - ' || s.nome AS "Supervisor",
-------------------------------------------------------------------------------------------------------------------------    
     (CASE WHEN d.codsupervisor = 2 THEN (SUM(c.qt)/24)+ad.adddida ELSE (SUM(c.qt)/24)+ad.addjr END) AS "Qt. Caixas"
   FROM pcusuari a
   JOIN PCSUPERV s ON a.codsupervisor = s.codsupervisor
