@@ -1,12 +1,10 @@
-SELECT * FROM
-(
+SELECT * FROM(
   WITH Bivolt AS 
     (SELECT c.data,
             a.codusur,
             (SUM(c.qt))/6 Fardos,
             (c.qt*7.15) - (c.qt*c.pvenda) INVEST,
             c.codcli
-        --(CASE WHEN d.codsupervisor = 2 THEN (SUM(c.qt)/24)+ad.adddida ELSE (SUM(c.qt)/24)+ad.addjr END) AS "Qt. Caixas"
       FROM pcusuari a
       JOIN PCSUPERV s ON a.codsupervisor = s.codsupervisor
       JOIN pcpedi c ON c.codusur = a.codusur
@@ -36,7 +34,6 @@ SELECT NULL AS data,
        NULL AS fardos,
        'R$' ||SUM(bi.INVEST) AS INVESTIMENTO
 FROM Bivolt bi
-)
-ORDER BY
-CASE WHEN "COD" IS NULL THEN 1 ELSE 0 END,
-"DN DISTINTOS" DESC
+    )ORDER BY
+    CASE WHEN fardos IS NULL THEN 1 ELSE 0 END,
+    fardos asc
