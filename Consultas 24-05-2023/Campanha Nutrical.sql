@@ -22,8 +22,9 @@ SELECT * FROM
     SELECT NULL as "COD",
            'TOTAL DE POSITIVAÇÕES' as "Vendedor",
            SUM(a.distintos) AS "DN DISTINTOS"
-    FROM DN a)
+    FROM DN a
     
+)
 ORDER BY
 CASE WHEN "COD" IS NULL THEN 1 ELSE 0 END,
 "DN DISTINTOS" DESC
