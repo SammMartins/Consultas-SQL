@@ -6,4 +6,4 @@ JOIN PCPRODUT b on a.codprod = b.codprod
 JOIN pcclient c on a.codcli = c.codcli
 JOIN PCusuari d on a.CODUSUR = d.CODUSUR
 
-
+WhERE a.data BETWEEN '01-jun-2023' and SYSDATE
