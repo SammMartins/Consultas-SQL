@@ -14,7 +14,7 @@ SELECT * FROM(
       JOIN pcusuari d ON c.codusur = d.codusur
       WHERE a.codsupervisor IN (2, 8)
         AND c.codprod IN (18329)
-        AND c.pvenda < 6.30
+        AND c.pvenda < 6.40
         AND c.DATA BETWEEN '01-jun-2023' AND SYSDATE
         AND c.vlbonific = 0
         AND d.codsupervisor = a.codsupervisor
@@ -27,7 +27,7 @@ SELECT  TO_CHAR(b.data, 'DD/MM/yy') data,
         (b.codcli || ' - ' || c.cliente) AS cliente,
         b.fardos fardos,
         'R$' || REPLACE(b.pvenda, '.', ',') AS "R$",
-        'R$' || b.INVEST AS INVESTIMENTO
+        'R$' || REPLACE(b.INVEST, '.', ',') AS INVESTIMENTO
         
         
     FROM PCUSUARI u 
@@ -39,8 +39,8 @@ SELECT NULL AS data,
 '                        Investimento Total:' AS cliente,
        NULL AS fardos,
        NULL AS "R$",
-       'R$' ||SUM(bi.INVEST) AS INVESTIMENTO
-FROM Bivolt bi
+       'R$' ||REPLACE(SUM(bi.INVEST), '.', ',') AS INVESTIMENTO
+FROM Bivolt bi 
 --------------------------------------------------------------
 
     )ORDER BY

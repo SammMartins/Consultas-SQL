@@ -1,7 +1,7 @@
-WITH addyopro AS (SELECT 0 AS ADDJR, 34 AS ADDDIDA FROM DUAL), -- Para adição manual de caixas
+WITH addyopro AS (SELECT 0 AS ADDJR, 34 AS ADDDIDA FROM DUAL), -- Adição manual de Caixas com desconto no boleto
 ------------------------------------------------------------------------------------------------------------------------    
-qt_caixas AS (
-  SELECT 
+qt_caixas AS 
+(SELECT 
     a.codsupervisor || ' - ' || s.nome AS "Supervisor",
     (CASE WHEN d.codsupervisor = 2 THEN (SUM(c.qt)/24)+ad.adddida ELSE (SUM(c.qt)/24)+ad.addjr END) AS "Qt. Caixas"
   FROM pcusuari a
@@ -16,7 +16,7 @@ qt_caixas AS (
     AND c.vlbonific = 0
     AND d.codsupervisor = a.codsupervisor
   GROUP BY a.codsupervisor, s.nome, d.codsupervisor, ad.adddida, ad.addjr)
-------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------
 SELECT
   "Supervisor",
   "Qt. Caixas",
