@@ -1,4 +1,4 @@
-WITH addyopro AS (SELECT 0 AS ADDJR, 0 AS ADDDIDA FROM DUAL), -- Para adição manual de caixas
+WITH addyopro AS (SELECT 0 AS ADDJR, 34 AS ADDDIDA FROM DUAL), -- Para adição manual de caixas
 ------------------------------------------------------------------------------------------------------------------------    
 qt_caixas AS (
   SELECT 
@@ -43,4 +43,4 @@ WHERE c.codprod IN (17883,17884,17885,18173)
   AND c.vlbonific = 0
   AND d.codsupervisor IN (2,8) 
 
-ORDER BY "Qt. Caixas";
+ORDER BY "Qt. Caixas"
