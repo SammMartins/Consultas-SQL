@@ -32,11 +32,12 @@ FROM qt_caixas
 UNION ALL
 
 SELECT 
-  'Total' AS "Supervisor",
-  SUM(qt)/24 AS "Qt. Caixas",
+  '  - Total' AS "Supervisor",
+  (SUM(qt)/24) + ad.adddida + ad.addjr AS "Qt. Caixas",
   100.00 AS "%"  
 FROM pcpedi c
 JOIN pcusuari d ON c.codusur = d.codusur
+JOIN addyopro ad ON 1 = 1
 WHERE c.codprod IN (17883,17884,17885,18173)
   AND c.pvenda < 6.90
   AND c.DATA BETWEEN '1-jun-2023' AND SYSDATE
