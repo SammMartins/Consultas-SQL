@@ -36,7 +36,7 @@ SELECT  TO_CHAR(b.data, 'DD/MM/yy') data,
 UNION ALL 
 SELECT NULL AS data,
        NULL AS vendedor,
-'                        Investimento Total:' AS cliente,
+'                       Investimento Total:' AS cliente,
        NULL AS fardos,
        NULL AS "R$",
        'R$' ||REPLACE(SUM(bi.INVEST), '.', ',') AS INVESTIMENTO
