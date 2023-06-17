@@ -17,7 +17,7 @@ FROM (
     FROM PCPEDI a
     JOIN PCPRODUT b ON a.codprod = b.codprod
     JOIN PCPEDC c ON a.numped = c.numped
-    WHERE c.numcar = 194070
+    WHERE c.numcar = 194125
     GROUP BY a.codprod, b.codfornec, b.Descricao, b.qtunitcx, b.PESOBRUTO
 -------------------------------------------------------------------------------------------------------------------------------
     UNION ALL
@@ -32,7 +32,7 @@ FROM (
     FROM PCPEDI a
     JOIN PCPEDC c ON a.numped = c.numped
     JOIN PCCARREG carg ON c.numcar = carg.numcar
-    WHERE c.numcar = 194070
+    WHERE c.numcar = 194125
     GROUP BY c.numcar, carg.totpeso, carg.destino
 ) subquery
 ORDER BY 
@@ -40,3 +40,4 @@ ORDER BY
   CASE WHEN codfornec IN ('1761') THEN 1 ELSE 2 END,
   codfornec DESC,
   qt_ped DESC
+  --adicionar codbarra, cliente e endereço
