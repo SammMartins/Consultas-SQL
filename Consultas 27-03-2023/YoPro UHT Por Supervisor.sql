@@ -1,4 +1,4 @@
-WITH addyopro AS (SELECT 0 AS ADDJR, 34 AS ADDDIDA FROM DUAL), -- Adição manual de Caixas com desconto no boleto
+WITH addyopro AS (SELECT 0 AS ADDJR, 14 AS ADDDIDA FROM DUAL), -- Adição manual de Caixas com desconto no boleto
 ------------------------------------------------------------------------------------------------------------------------    
 qt_caixas AS 
 (SELECT 
