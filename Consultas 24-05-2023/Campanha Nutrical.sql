@@ -7,7 +7,7 @@ SELECT * FROM
             JOIN PCPEDI pedi on pedi.numped = ped.numped
             JOIN pcprodut prod on pedi.codprod = prod.codprod
         WHERE prod.codfornec = 1761
-            AND ped.data BETWEEN '15-may-2023' and '15-jun-2023'
+            AND ped.data BETWEEN '15-mai-2023' and '15-jun-2023'
             AND PED.DTCANCEL IS NULL
             AND PED.CONDVENDA IN (1, 2, 3, 7, 9, 14, 15, 17, 18, 19, 98)
         GROUP BY ped.codusur)
