@@ -1,4 +1,6 @@
-SELECT DISTINCT(a.NUMPED),b.vltotal "R$",a.codcli,d.cliente,a.codusur,(CASE WHEN a.posicao like 'B' Then a.posicao||'loqueado' ELSE a.posicao||'iberado' END)"Status",a.data || ' às ' || b.hora||'H' "Envio",
+SELECT DISTINCT(a.NUMPED)"Nº PEDIDO",'R$'||REPLACE(b.vltotal, '.', ',') "R$",a.codcli|| ' - ' ||d.cliente Cliente,
+                a.codusur rca,(CASE WHEN a.posicao like 'B' Then a.posicao||'loqueado' ELSE a.posicao||'iberado' END) Status,
+                TO_CHAR(a.data, 'DD/MM') || ' às ' || b.hora||'H' Envio,
                 b.obs "MOTIVO ANALISADO",
                 (SELECT LISTAGG(c.motivo, ' | ') WITHIN GROUP (ORDER BY c.motivo desc)FROM PCBLOQUEIOSPEDIDO c WHERE a.numped = c.numped) "MOTIVO SISTEMA"
                 
@@ -13,4 +15,4 @@ WHERE a.data BETWEEN SYSDATE-7 and SYSDATE
                      (158,155,156,167,169,170,172)
     AND a.posicao Not Like 'F' AND a.posicao Not Like 'M' 
     --AND a.posicao Not Like 'L' 
-ORDER BY CODCLI,NUMPED
+ORDER BY "Nº PEDIDO"
