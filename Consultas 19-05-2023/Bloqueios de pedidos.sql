@@ -11,9 +11,9 @@ FROM pcpedi a
     
 WHERE a.data BETWEEN SYSDATE-7 and SYSDATE
     AND a.codusur in --(153,143,148,145,150,151,152,168,174)
-                     --(141,140,142,157)
+                     (141,140,142,157)
                      --(158,155,156,167,169,170,172)
-    (153,140,141,142,145,148,150,151,152,155,156,157,158,167,168,169,170,172,174) AND (SYSDATE - a.DATA > 3) and  (SYSDATE - a.DATA < 30)
+    --(153,140,141,142,145,148,150,151,152,155,156,157,158,167,168,169,170,172,174) AND (SYSDATE - a.DATA > 3) and  (SYSDATE - a.DATA < 30)
     AND a.posicao Not Like 'F' AND a.posicao Not Like 'M' 
     --AND a.posicao Not Like 'L' 
     
