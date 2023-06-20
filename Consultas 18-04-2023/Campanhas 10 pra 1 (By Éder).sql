@@ -10,7 +10,7 @@ and    g.codprod = h.codprod
 --and    a.codpromocao in (:codpromo)
 and    a.data  between SYSDATE-30 and SYSDATE
 --and    a.posicao in (:posicao)
---and    h.codfornec in (:codfornec)
+and    h.codfornec in (1634)
 and    a.codpromocao is not null
 
 group by a.codpromocao, f.descricao,f.dtinicio, f.dtfim, a.qt,(a.pvenda*(a.qt)), a.numped, a.data, a.codcli, b.cliente, d.nome, a.codusur, c.nome
