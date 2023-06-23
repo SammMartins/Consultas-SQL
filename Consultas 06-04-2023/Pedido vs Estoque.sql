@@ -1,5 +1,6 @@
 SELECT Distinct a.CODPROD, c.descricao, 
-       SUM(a.QT) "Itens Pedidos", (b.qtest - b.qtreserv) "QT. Estoque", 
+       SUM(a.QT) "Itens Pedidos", 
+       (b.qtest - b.qtreserv) "QT. Estoque", 
        SUM(a.QT) - (b.qtest - b.qtreserv) as "Corte Previsto"
 from pcpedi a
     JOIN PCest b on a.codprod = b.codprod
