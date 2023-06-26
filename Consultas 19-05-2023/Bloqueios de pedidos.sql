@@ -1,6 +1,6 @@
-SELECT DISTINCT(a.NUMPED)"Nº PEDIDO", TO_CHAR(a.data, 'DD/MM') || ' às ' || b.hora||'H' Envio,' ' " ",
+SELECT DISTINCT(a.NUMPED)"Nº PEDIDO",a.codusur rca, TO_CHAR(a.data, 'DD/MM') || ' às ' || b.hora||'H' Envio,
                 (CASE WHEN a.posicao like 'B' Then a.posicao||'loqueado' WHEN a.posicao like 'C' Then a.posicao||'ancelado' ELSE a.posicao||'iberado' END) Status,
-                'R$'||REPLACE(b.vltotal, '.', ',') "Valor R$",' ' "  ",a.codusur rca,a.codcli|| ' - ' ||d.cliente Cliente,
+                'R$'||REPLACE(b.vltotal, '.', ',') "Valor R$",'|' "|",a.codcli|| ' - ' ||SUBSTR(d.cliente,0,30) Cliente,
                 (CASE WHEN b.obs IS NULL Then 'NAO ANALISADO' ELSE b.obs END) "MOTIVO ANALISADO",
                 (SELECT LISTAGG(c.motivo, ' | ') WITHIN GROUP (ORDER BY c.motivo desc)FROM PCBLOQUEIOSPEDIDO c WHERE a.numped = c.numped) "MOTIVO SISTEMA"
                 
