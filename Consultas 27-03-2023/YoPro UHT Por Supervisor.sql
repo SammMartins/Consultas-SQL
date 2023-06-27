@@ -21,7 +21,7 @@ SELECT
   "Supervisor",
   -GAP AS GAP,
   "Cx. Vendidas",
-  ROUND(("Cx. Vendidas" / (SELECT SUM(qt_caixas."Cx. Vendidas") FROM qt_caixas WHERE qt_caixas."Supervisor" != '  - Total')) * 100, 0) AS "%"
+  ROUND(("Cx. Vendidas" / (SELECT SUM(qt_caixas."Cx. Vendidas") FROM qt_caixas WHERE qt_caixas."Supervisor" != '  - Total')) * 100, 0)||'%' AS "%"
 FROM qt_caixas
 
 UNION ALL
@@ -30,7 +30,7 @@ SELECT
   '  - TOTAL' AS "Supervisor",
   -((ad.gap*2) - ((SUM(qt)/24) + ad.adddida + ad.addjr)) AS GAP,
   (SUM(qt)/24) + ad.adddida + ad.addjr AS "Cx. Vendidas",
-  100.00 AS "%"
+  100.00||'%' AS "%"
 FROM pcpedi c
 JOIN pcusuari d ON c.codusur = d.codusur
 JOIN addyopro ad ON 1 = 1
