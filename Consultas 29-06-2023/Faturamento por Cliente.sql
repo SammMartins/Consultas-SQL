@@ -1,4 +1,5 @@
-WITH DATA AS (SELECT '1-jan-2023' DATAINI , '31-jan-2023' DATAFIM FROM DUAL),
+SELECT * FROM(
+WITH DATA AS (SELECT '1-jan-2023' DATAINI , '30-jun-2023' DATAFIM FROM DUAL),
 FAT AS 
     (SELECT DISTINCT(PC.CODCLI) CLIENTE,SUM(PC.VLATEND) Faturado      
         FROM PCPEDC PC
@@ -19,11 +20,17 @@ DEVOL AS
 -------------------------------------------------------------------------------------------------------------------------
         
 SELECT a.CODUSUR1 RCA,a.CODCLI,a.CLIENTE,
-       ' ' " ",(f.faturado) - (d.devolvido) Faturamento,'|' "|",
-       a.CGCENT,a.FANTASIA,a.MUNICENT,
+       (CASE WHEN d.devolvido < 0 THEN (f.faturado) 
+             WHEN d.devolvido > 0 THEN (f.faturado) - (d.devolvido)
+             ELSE (f.faturado) - (d.devolvido) END) Faturamento,
+       '|' "|",
+       a.CGCENT CNPJ,a.FANTASIA,a.MUNICENT,
        a.DTCADASTRO 
 FROM PCCLIENT A
 JOIN FAT F on f.CLIENTE = a.CODCLI
 JOIN DEVOL D on d.CLIENTE = a.CODCLI
 
+--WHERE a.codcli = 1548
+
 ORDER BY faturamento DESC
+) where ROWNUM <= 30
