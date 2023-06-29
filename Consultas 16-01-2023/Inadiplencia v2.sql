@@ -13,7 +13,7 @@ and A.vpago is NULL
 and A.codusur in (140, 141, 142, 143, 145, 148, 150, 151, 152, 153, 155, 156, 157, 158, 161, 164, 167, 168, 169, 170, 172, 174) --({VENDEDOR})
 and A.codcob in ('7563','SERA','C','CHD1')
 
-order by DIAS_VENCIMENTO Desc, TÍTULO Desc
+order by "DIAS VENCIMENTO" Desc, TÍTULO Desc
 --SELECT * from pcprest A where A.dtemissao between '01-jan-2020' and '12-jan-2023'
 
 --select * from pcclient
