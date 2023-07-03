@@ -17,13 +17,14 @@ FROM (
     FROM PCPEDI a
     JOIN PCPRODUT b ON a.codprod = b.codprod
     JOIN PCPEDC c ON a.numped = c.numped
-    WHERE c.numcar = 194172
+    WHERE c.numcar = 194213
+    AND A.CODCLI = 14482
     GROUP BY a.codprod, b.codfornec, b.Descricao, b.qtunitcx, b.PESOBRUTO
 -------------------------------------------------------------------------------------------------------------------------------
     UNION ALL
     SELECT NULL AS "CODPROD",
            '  CARGA' AS "CODFORNEC",
-           'Nº ' || c.numcar || ' - ' || 'Destino: ' || carg.destino AS "PRODUTO",
+           'Cli. ' || A.CODCLI || ' - ' || 'Destino: ' || carg.destino AS "PRODUTO",
            NULL AS "QT_PED",
            '|' AS "|",
            '  Peso Total da Carga:' AS "SEPARAÇÃO p/ CARGA",
@@ -32,8 +33,9 @@ FROM (
     FROM PCPEDI a
     JOIN PCPEDC c ON a.numped = c.numped
     JOIN PCCARREG carg ON c.numcar = carg.numcar
-    WHERE c.numcar = 194172
-    GROUP BY c.numcar, carg.totpeso, carg.destino
+    WHERE c.numcar = 194213
+    AND A.CODCLI = 14482
+    GROUP BY c.numcar, carg.totpeso, carg.destino,A.CODCLI
 ) subquery
 ORDER BY 
   CASE WHEN codfornec IN ('588', '1321','1541','1623','1728') THEN 0 ELSE 1 END,
