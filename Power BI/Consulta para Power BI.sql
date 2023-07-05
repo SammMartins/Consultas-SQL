@@ -2,7 +2,7 @@ SELECT
 ped.codusur,
 usur.codsupervisor,
 ped.codcli,
-cli.cliente,--select * from pcclient
+cli.cliente,
 ped.codprod,
 prod.descricao,
 ped.numped,
@@ -17,7 +17,4 @@ from pcpedi ped
 join pcprodut prod on ped.codprod = prod.codprod
 join pcusuari usur on ped.codusur = usur.codusur
 join pcclient cli on ped.codcli = cli.codcli
-WHERE ped.data > SYSDATE-90
-
---select * from pcprodut
---select * from pcpedi
+WHERE ped.data BETWEEN '01-jun-2023' AND '30-jun-2023'
