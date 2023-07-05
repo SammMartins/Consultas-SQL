@@ -6,7 +6,7 @@ JOIN PCPRODUT b on a.codprod = b.codprod
 JOIN pcclient c on a.codcli = c.codcli
 JOIN PCusuari d on a.CODUSUR = d.CODUSUR
 
-WhERE a.data BETWEEN '01-jun-2023' and SYSDATE
+WhERE a.data BETWEEN '01-jul-2023' and SYSDATE
     AND b.codfornec = 1658
 
 ORDER BY a.CODPROD,a.DATA
