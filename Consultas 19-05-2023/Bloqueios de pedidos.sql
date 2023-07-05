@@ -1,4 +1,4 @@
-SELECT DISTINCT(a.NUMPED)"Nº PEDIDO",(u.codusur || ' - ' || SUBSTR(u.nome,4,9)) AS "Vendedor", 
+SELECT DISTINCT(a.NUMPED)"Nº PEDIDO",u.codsupervisor "Superv.",(u.codusur || ' - ' || SUBSTR(u.nome,4,9)) AS "Vendedor",
                 TO_CHAR(a.data, 'DD/MM') || ' às ' || b.hora||'H' Envio,
                 (CASE WHEN a.posicao like 'B' Then a.posicao||'loqueado' WHEN a.posicao like 'C' Then a.posicao||'ancelado' ELSE a.posicao||'iberado' END) Status,
                 'R$'||REPLACE(b.vltotal, '.', ',') "Valor R$",'|' "|",a.codcli|| ' - ' ||SUBSTR(d.cliente,0,30) Cliente,
@@ -12,13 +12,9 @@ FROM pcpedi a
     JOIN PCUSUARI U on U.codusur = a.codusur
     
 WHERE a.data BETWEEN SYSDATE-8 and SYSDATE
-    AND a.codusur in --(153,143,148,145,150,151,152,168,174)
-                     --(141,140,142,157)
-                     --(158,155,156,167,161,169,170,172)
-    (141, 142, 143, 145, 148, 150, 151, 152, 153, 155, 156, 157, 158, 161, 164, 167, 168, 169, 170, 172, 174)
-    --AND (SYSDATE - a.DATA > 3) and  (SYSDATE - a.DATA < 30)
+    AND a.codusur in 
+    (141, 142, 143, 145, 148, 150, 151, 152, 153, 155, 156, 157, 158, 161, 164, 167, 168, 169, 170, 172, 174,160,2)
     AND a.posicao Not Like 'F' AND a.posicao Not Like 'M' 
-    --AND a.posicao Not Like 'L' 
-    
+
     
 ORDER BY "Nº PEDIDO"
