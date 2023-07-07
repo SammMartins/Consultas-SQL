@@ -7,7 +7,7 @@ WITH PC_Hyts AS (
            SUM(CASE WHEN d.CODPROD IN (18182) THEN d.qt ELSE 0 END) AS unidades_palha,
            SUM(CASE WHEN d.CODPROD IN (18364, 18365) THEN d.qt ELSE 0 END) AS unidades_puruca
     FROM pcpedi d
-    WHERE d.data BETWEEN '1-jun-2023' AND '30-jun-2023'
+    WHERE d.data BETWEEN '1-jul-2023' AND '31-jul-2023'
         AND d.posicao NOT LIKE 'C'
         AND d.vlbonific = 0
     GROUP BY d.codusur)
