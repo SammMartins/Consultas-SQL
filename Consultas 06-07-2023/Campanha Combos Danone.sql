@@ -2,7 +2,7 @@ WITH Contagem AS
     (SELECT
         COUNT(DISTINCT p.numped) AS cont,
         p.codusur AS rca,
-        LISTAGG(p.codcli, ' - ') WITHIN GROUP (ORDER BY p.codcli) AS clientes
+        LISTAGG(p.codcli, ', ') WITHIN GROUP (ORDER BY p.codcli) AS clientes
     FROM
         (SELECT
             p.*,
@@ -22,4 +22,10 @@ SELECT
 FROM PCUSUARI u
 LEFT JOIN Contagem c ON u.codusur = c.rca
 WHERE u.codusur IN (140, 141, 142, 143, 145, 148, 150, 151, 152, 153, 155, 156, 157, 158, 161, 164, 167, 168, 169, 170, 172, 174)
+
+UNION ALL 
+SELECT '                                - TOTAL:' AS "Vendedor",
+       ' R$'||SUM(c.cont) AS "R$",
+       LISTAGG(c.clientes, ', ') WITHIN GROUP (ORDER BY c.clientes) AS "Clientes Atendidos"
+FROM Contagem c 
 ORDER BY "R$" desc, "Vendedor" ASC
