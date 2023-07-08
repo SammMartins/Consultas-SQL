@@ -11,9 +11,10 @@ FROM pcpedi a
     JOIN pcclient d on d.codcli = a.codcli 
     JOIN PCUSUARI U on U.codusur = a.codusur
     
-WHERE a.data BETWEEN SYSDATE-8 and SYSDATE
+WHERE a.data BETWEEN SYSDATE-5 and SYSDATE
     AND a.codusur in 
-    (141, 142, 143, 145, 148, 150, 151, 152, 153, 155, 156, 157, 158, 161, 164, 167, 168, 169, 170, 172, 174,160,2)
+    (--140, 141, 142, 157,
+    143, 145, 148, 150, 151, 152, 153, 155, 156,  158, 161, 164, 167, 168, 169, 170, 172, 174, 2, 160)
     AND a.posicao Not Like 'F' AND a.posicao Not Like 'M' 
 
     
